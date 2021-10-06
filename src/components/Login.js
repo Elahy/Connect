@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Button, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
+const axios = require("axios");
 // import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +27,22 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(props) {
   //  const dispatch = useDispatch()
-  const [cred, setCred] = useState([]);
+  const [cred, setCred] = useState({
+    email: "",
+    password: "",
+  });
+
+  axios
+    .post("https://social-neto.herokuapp.com/auth/login", {
+      email: cred.email,
+      password: cred.password,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
   const classes = useStyles();
   const buttonHandler = (e) => {
@@ -69,7 +85,7 @@ function Login(props) {
                   />
                   <TextField
                     onChange={(e) =>
-                      setCred({ ...cred, email: e.target.value })
+                      setCred({ ...cred, password: e.target.value })
                     }
                     required={true}
                     name="password"
