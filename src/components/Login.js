@@ -4,8 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Button, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
-import data from "../data";
+// import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,31 +25,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-  const history = useHistory();
-  console.log(props, "===props");
-  const users = data.users;
-  const [log, setLog] = useState({
-    username: "",
-    password: "",
-  });
-  const updateField = (e) => {
-    setLog({
-      ...log,
-      [e.target.name]: e.target.value,
-    });
-  };
+  //  const dispatch = useDispatch()
+  const [cred, setCred] = useState([]);
+
   const classes = useStyles();
   const buttonHandler = (e) => {
-    users.every((user) => {
-      console.log(user.name, log.username, "===username");
-      console.log(user.password, log.password, "===userPassword");
-      if (user.name === log.username && user.password === log.password) {
-        props.setlog(true);
-        history.push("/");
-        return false;
-      }
-    });
-    // alert("Wrong Username or Password!");
     e.preventDefault();
   };
   return (
@@ -77,19 +56,21 @@ function Login(props) {
                 <h1>Login</h1>
                 <form className={classes.form} noValidate autoComplete="off">
                   <TextField
-                    value={log.username}
-                    onChange={updateField}
+                    onChange={(e) =>
+                      setCred({ ...cred, email: e.target.value })
+                    }
                     required={true}
-                    name="username"
+                    name="email"
                     autoFocus={true}
                     id="outlined-basic"
-                    label="Username"
+                    label="Email"
                     variant="outlined"
                     className={classes.username}
                   />
                   <TextField
-                    value={log.password}
-                    onChange={updateField}
+                    onChange={(e) =>
+                      setCred({ ...cred, email: e.target.value })
+                    }
                     required={true}
                     name="password"
                     id="outlined-basic"
