@@ -3,13 +3,11 @@ import "./index.css";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import { Switch, Route } from "react-router-dom";
-// import { useHistory } from "react-router";
 import Signup from "./components/Signup";
 import ForgetPass from "./components/ForgetPass";
 
 function App() {
   const [logged, setLogged] = useState(false);
-  // const history = useHistory();
   console.log(logged, "===log from app");
   return (
     <>

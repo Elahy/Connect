@@ -32,20 +32,19 @@ function Login(props) {
     password: "",
   });
 
-  axios
-    .post("https://social-neto.herokuapp.com/auth/login", {
-      email: cred.email,
-      password: cred.password,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
   const classes = useStyles();
   const buttonHandler = (e) => {
+    axios
+      .post("https://social-neto.herokuapp.com/auth/login", {
+        email: cred.email,
+        password: cred.password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     e.preventDefault();
   };
   return (
@@ -106,7 +105,7 @@ function Login(props) {
                   </Button>
                 </form>
                 <p>
-                  New to Connect? <Link to="/signup">Sign Up</Link>{" "}
+                  New to Connect? <Link to="/signup">Sign Up</Link>
                 </p>
               </Paper>
             </Grid>
